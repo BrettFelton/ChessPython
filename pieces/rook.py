@@ -5,6 +5,7 @@ class Rook(Piece):
     def __init__(self, is_white):
         self.value = 5
         self.is_white = is_white
+        self.is_first_move = True
 
     def valid_move(self):
         pass    

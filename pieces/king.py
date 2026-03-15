@@ -2,6 +2,7 @@ from pieces.piece import Piece
 
 class King(Piece):
     def __init__(self, is_white):
+        self.value = None
         self.is_white = is_white
 
     def valid_move(self):

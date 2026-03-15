@@ -1,8 +1,8 @@
 from pieces.piece import Piece
 
-class Queen(Piece):
+class Knight(Piece):
     def __init__(self, is_white):
-        self.value = 9
+        self.value = 3
         self.is_white = is_white
 
     def valid_move(self):
@@ -10,6 +10,6 @@ class Queen(Piece):
 
     def draw_piece(self):
         if self.is_white:
-            return("♛")
+            return("♞")
         else:
-            return("♕")
+            return("♘")

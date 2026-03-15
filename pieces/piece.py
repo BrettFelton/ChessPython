@@ -1,6 +1,6 @@
 class Piece():
     def __init__(self):
-        pass
+        self.value = 0
 
     def valid_move(self):
         pass

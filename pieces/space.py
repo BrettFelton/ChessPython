@@ -4,7 +4,7 @@ class Space(Piece):
     def __init__(self, is_white):
         self.is_white = is_white
 
-    def valid_move(self):
+    def validate_move(self, start_position, end_position):
         pass    
 
     def draw_piece(self):

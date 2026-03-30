@@ -33,11 +33,9 @@ class Board():
         self.board[f"f{main_rank}"] = Bishop(is_white)
         self.board[f"g{main_rank}"] = Knight(is_white)
         self.board[f"h{main_rank}"] = Rook(is_white)
-        
         # Pawn pieces
         for file in files:
             self.board[f"{file}{pawn_rank}"] = Pawn(is_white)
-
         # Open space pieces
         rank1 = ranks[2:6:2]
         rank2 = ranks[3:7:2]
@@ -47,7 +45,6 @@ class Board():
         else:
             file1 = files[::2]
             file2 = files[1::2]
-
         for rank in rank1:
             for file in file1:
                 self.board[f"{file}{rank}"] = Space(is_white)
@@ -72,3 +69,48 @@ class Board():
 
         for row in result:
             print(row)
+
+    def validate_turn_input(self, line):
+        if (len(line) != 4 
+            or line[0] not in (files)
+            or line[1] not in (ranks)
+            or line[2] not in (files)
+            or line[3] not in (ranks)
+        ):
+            print("Invalid turn input. Please enter a valid format: FileRankFileRank a1a2")
+            print("Valid Files abcdefgh")
+            print("Valid Ranks 12345678")
+            return False
+
+        return True
+
+    def validate_piece(self, white_turn, start_position):
+        player = ""
+        if white_turn:
+            player = "White"
+        else:
+            player = "Black"
+
+        piece = self.board[start_position]
+
+        if white_turn != piece.is_white:
+            print(f"Invalid piece selected. Please select a {player} piece")
+            return False
+        
+        if isinstance(piece, Space):
+            print("No piece selected. Please select a piece to move")
+            return False
+        return True
+
+    def validate_piece_move(self, start_position, end_position):
+        piece = self.board[start_position]
+        return piece.validate_move(start_position, end_position)
+
+    def move_piece(self, white_turn, start_position, end_position):
+        is_white_space = (files.index(start_position[0]) + ranks.index(start_position[1])) % 2 != 0
+
+        piece = self.board[start_position]
+        
+        self.board[start_position] = Space(is_white_space)
+        self.board[end_position] = piece
+        self.draw_board()

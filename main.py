@@ -1,7 +1,6 @@
 from game import Game
 
 def main():
-    print("Hello from chesspython!")
     new_game = Game()
 
 

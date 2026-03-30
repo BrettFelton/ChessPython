@@ -7,20 +7,21 @@ class Pawn(Piece):
         self.is_first_move = True
 
     def validate_move(self, start_position, end_position):
-        move_distance = int(end_position[1]) - int(start_position[1])
+        rank_distance = int(end_position[1]) - int(start_position[1])
+        forward_step = 1 if self.is_white else -1
 
         if start_position[0] != end_position[0]:
-            print("Pawn piece can only move in its given file")
+            print("Pawn can only move in its given file")
             return False
         
         if self.is_first_move:
-            if move_distance > 2 or move_distance <= 0:
-                print("Pawn piece can only move one or two spaces on the first turn")
+            if rank_distance not in (forward_step, 2 * forward_step):
+                print("Pawn can only move one or two spaces forward on the first turn")
                 return False
             self.is_first_move = False
         else:
-            if move_distance > 1 or move_distance <= 0:
-                print("Pawn piece can only move one space after its first turn")
+            if rank_distance != forward_step:
+                print("Pawn can only move one space forward after its first turn")
                 return False
         
         return True    

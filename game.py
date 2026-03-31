@@ -22,21 +22,26 @@ class Game():
             while not game_over:
                 white_turn = True
                 game_over = self.player_turn(white_turn)
+                if (game_over):
+                    print("White wins the game!!")
+                    continue
                 white_turn = False
                 game_over = self.player_turn(white_turn)
+                if (game_over):
+                    print("Black wins the game!!")
+                    continue
 
             valid_input = False            
             while not valid_input:
                 line = input(f"Do you want to restart? (y/n)").lower()
                 if line == "n":
                     restart = False
-                    valid_input = Truevalidate_turn_input
+                    valid_input = True
                 elif line == "y":
                     restart = True
                     valid_input = True
                 else:
                     print("Invalid input please try again.")
-
 
     def player_turn(self, white_turn):
         player = ""
@@ -63,5 +68,6 @@ class Game():
                 continue
                 
             self.board.move_piece(white_turn, start_position, end_position)
-            return False
+
+            return not self.board.check_king_exist()
 

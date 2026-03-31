@@ -104,21 +104,20 @@ class Board():
         return True
 
     def validate_piece_move(self, start_position, end_position):
-        # TODO: Only the knight can jump over pieces. Aka if a piece is in the path of movement the move is invalid
         piece = self.board[start_position]
-        return piece.validate_move(start_position, end_position)
+        return piece.validate_move(start_position, end_position, self.board)
 
     def move_piece(self, white_turn, start_position, end_position):
         is_white_space = (files.index(start_position[0]) + ranks.index(start_position[1])) % 2 != 0
 
-        start_piece = self.board[start_position]
-        end_piece = self.board[end_position]
+        piece = self.board[start_position]
+        target = self.board[end_position]
         
         self.board[start_position] = Space(is_white_space)
-        self.board[end_position] = start_piece
+        self.board[end_position] = piece
         self.draw_board()
 
-        if isinstance(end_piece, King):
+        if isinstance(target, King):
             self.king_alive = False
 
         # TODO:If the piece is the pawn and it reaches the end of the board promote the piece to any other piece except a pawn and king.

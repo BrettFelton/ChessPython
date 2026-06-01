@@ -2,6 +2,31 @@
 
 ChessPython is a terminal-based chess game written in Python. It runs in a loop, draws the board after each move, and alternates turns between White and Black until a king is captured.
 
+## Motivation
+
+This project is a lightweight way to play chess in the terminal while learning Python object-oriented design.
+
+It focuses on:
+
+- Clear piece-based movement logic
+- A simple interactive game loop
+- Readable code that is easy to extend with full chess rules later
+
+## Quick Start
+
+Run these commands from the project root:
+
+```bash
+# 1) Install uv (Linux/macOS)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 2) Verify uv is installed
+uv --version
+
+# 3) Start the game
+uv run main.py
+```
+
 ## Requirements
 
 - Python 3.14+
@@ -46,6 +71,32 @@ You should see:
 - `New Game Started`
 - The current board
 - A prompt for White, then Black
+
+## Usage
+
+Use algebraic square coordinates in a 4-character move format:
+
+- First 2 characters: start square
+- Last 2 characters: destination square
+
+Examples:
+
+```text
+e2e4
+g1f3
+```
+
+During the game:
+
+- White enters a move
+- Black enters a move
+- The board redraws after every legal move
+- Invalid moves prompt the same player again
+
+When a game ends, enter:
+
+- `y` to restart
+- `n` to quit
 
 ## How Input Works
 
@@ -131,3 +182,13 @@ Notes about current behavior:
 - `game.py`: game loop, turn handling, restart flow
 - `board.py`: board setup, drawing, turn validation, piece movement
 - `pieces/`: movement rules and rendering per piece type
+
+## Contributing
+
+Contributions are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes and keep code style consistent with the project.
+4. Run the game locally with `uv run main.py` to verify behavior.
+5. Open a pull request with a clear summary of what changed and why.
